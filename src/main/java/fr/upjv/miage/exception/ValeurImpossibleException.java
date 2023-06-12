@@ -1,4 +1,4 @@
-package sudoku.exception;
+package fr.upjv.miage.exception;
 
 /**
  * ValeurImpossibleException.
