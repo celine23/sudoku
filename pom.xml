@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fr.upjv.miage</groupId>
-    <artifactId>sukoduCPH</artifactId>
+    <artifactId>SUDOKU</artifactId>
     <version>1.0</version>
 
     <dependencies>
@@ -28,6 +28,30 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>3.0.0</version>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.7.3.0</version>
+                <configuration>
+                    <includeTests>true</includeTests>
+                </configuration>
+            </plugin>
+            <plugin><!-- pour l'analyse avec checkstyle -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                </configuration>
+            </plugin>
+            <plugin><!-- pour la verification du code avec PMD -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.20.0</version>
+                <configuration>
+                    <includeTests>true</includeTests>
+                </configuration>
             </plugin>
             <plugin><!-- pour la couverture de code avec JaCoco lors de l'exécution des tests JUnit -->
                 <groupId>org.jacoco</groupId>
@@ -126,8 +150,8 @@
     </reporting>
 
     <properties>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
