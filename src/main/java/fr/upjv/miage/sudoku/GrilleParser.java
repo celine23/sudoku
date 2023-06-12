@@ -4,6 +4,10 @@ import fr.upjv.miage.exception.ElementInterditException;
 import fr.upjv.miage.exception.HorsBornesException;
 import fr.upjv.miage.exception.ValeurImpossibleException;
 import fr.upjv.miage.exception.ValeurInitialeModificationException;
+import fr.upjv.miage.implementation.ElementDeGrilleImplAsChar;
+import fr.upjv.miage.implementation.GrilleImpl;
+
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -89,7 +93,7 @@ public class GrilleParser {
                 }
             }
 
-            return new GrilleImpl(elementDeGrilles, grilleTab);
+            return new GrilleImpl();
         }
     }
 
