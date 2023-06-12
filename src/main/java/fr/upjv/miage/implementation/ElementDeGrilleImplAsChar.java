@@ -13,7 +13,7 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
     /**
      * Validation de la valeur initiale de la grille.
      */
-    private boolean vi;
+    private boolean initialValueValidated;
 
     /**
      * Constructeur de la classe.
@@ -22,7 +22,7 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      */
     public ElementDeGrilleImplAsChar(final char elements) {
         this.element = elements;
-        this.vi = false;
+        this.initialValueValidated = false;
     }
 
     /**
@@ -33,7 +33,7 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      */
     public ElementDeGrilleImplAsChar(final char elements, final boolean viM) {
         this.element = elements;
-        this.vi = viM;
+        this.initialValueValidated = viM;
     }
 
     /**
@@ -41,8 +41,8 @@ public class ElementDeGrilleImplAsChar implements ElementDeGrille {
      *
      * @return la validation que c'est une valeur initiale
      */
-    public final boolean getVi() {
-        return vi;
+    public final boolean getInitialValueValidated() {
+        return initialValueValidated;
     }
 
     @Override

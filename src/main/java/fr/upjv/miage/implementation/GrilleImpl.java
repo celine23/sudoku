@@ -1,6 +1,7 @@
 package fr.upjv.miage.implementation;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import fr.upjv.miage.exception.ElementInterditException;
@@ -134,9 +135,10 @@ public class GrilleImpl implements Grille {
      * Constructeur pour créer une nouvelle
      * instance de GrilleImpl avec une grille.
      *
-     * @param grille une grille
+     * @param elementDeGrilleMap
+     * @param grille             une grille
      */
-    public GrilleImpl(final ElementDeGrille[][] grille) {
+    public GrilleImpl(Map<Character, ElementDeGrille> elementDeGrilleMap, final ElementDeGrille[][] grille) {
 
         this.casesGrille = new ElementDeGrille[grille.length][grille[0].length];
 
@@ -207,7 +209,7 @@ public class GrilleImpl implements Grille {
         try {
             if (getValue(x, y) != null
                     && ((ElementDeGrilleImplAsChar) casesGrille[x][y])
-                    .getVi()) {
+                    .getInitialValueValidated()) {
                 vi = true;
             }
         } catch (HorsBornesException e) {

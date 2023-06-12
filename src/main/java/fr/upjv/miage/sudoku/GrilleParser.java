@@ -6,6 +6,9 @@ import fr.upjv.miage.exception.ValeurImpossibleException;
 import fr.upjv.miage.exception.ValeurInitialeModificationException;
 import fr.upjv.miage.implementation.ElementDeGrilleImplAsChar;
 import fr.upjv.miage.implementation.GrilleImpl;
+import fr.upjv.miage.sudoku.ElementDeGrille;
+
+
 
 
 
@@ -72,8 +75,13 @@ public class GrilleParser {
             if (elementDeGrilleMap.size() != dimension) {
                 throw new IllegalArgumentException("pas le bon nombre de valeurs possibles");
             }
-            ElementDeGrille[] elementDeGrilles = elementDeGrilleMap.values().toArray(new ElementDeGrille[]{});
             ElementDeGrille[][] grilleTab = new ElementDeGrille[dimension][dimension];
+            int index = 0;
+            for (ElementDeGrille element : elementDeGrilleMap.values()) {
+                grilleTab[index / dimension][index % dimension] = element;
+                index++;
+            }
+            //ElementDeGrille[][] grilleTab = new ElementDeGrille[dimension][dimension];
 
 
             for (int i = 0; i < dimension; i++) {
@@ -93,7 +101,7 @@ public class GrilleParser {
                 }
             }
 
-            return new GrilleImpl();
+            return new GrilleImpl(elementDeGrilleMap, grilleTab);
         }
     }
 
