@@ -2,4 +2,4 @@
  * Exceptions.
  * @author groupe J
  */
-package sudoku.exception;
+package fr.upjv.miage.exception;
