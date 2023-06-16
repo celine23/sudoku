@@ -23,8 +23,10 @@ public class GrilleTest {
 
     private GrilleImpl grilleTest;
 
+    @BeforeEach
     public void setUp() {
         // Initialiser la grille avant chaque test
+
         ElementDeGrille[][] grille = new ElementDeGrille[9][9];  // Remplacez les dimensions selon votre grille
         Set<ElementDeGrille> elementAutorise = new HashSet<>();  // Ajoutez les éléments autorisés nécessaires
         grilleTest = new GrilleImpl(grille, elementAutorise);
