@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import fr.upjv.miage.sudoku.ElementDeGrille;
 import fr.upjv.miage.exception.ElementInterditException;
 import fr.upjv.miage.exception.HorsBornesException;
 import fr.upjv.miage.exception.ValeurImpossibleException;
@@ -66,6 +67,9 @@ public class GrilleImpl implements Grille {
      */
     public GrilleImpl(final ElementDeGrille[][] grille,
                       final Set<ElementDeGrille> paramElementAutorise) {
+        if (grille == null) {
+            throw new IllegalArgumentException("Le tableau grille ne peut pas être null");
+        }
         this.casesGrille = new ElementDeGrille[grille.length][grille[0].length];
 
         for (int i = 0; i < grille.length; i++) {

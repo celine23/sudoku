@@ -5,11 +5,11 @@ import fr.upjv.miage.exception.HorsBornesException;
 import fr.upjv.miage.exception.ValeurImpossibleException;
 import fr.upjv.miage.exception.ValeurInitialeModificationException;
 import fr.upjv.miage.implementation.ElementDeGrilleImplAsChar;
-import fr.upjv.miage.sudoku.ElementDeGrille;
 import fr.upjv.miage.sudoku.Grille;
 import fr.upjv.miage.implementation.GrilleImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import fr.upjv.miage.sudoku.ElementDeGrille;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,11 +23,12 @@ public class GrilleTest {
 
     private GrilleImpl grilleTest;
 
+    @BeforeEach
     public void setUp() {
         // Initialiser la grille avant chaque test
         ElementDeGrille[][] grille = new ElementDeGrille[9][9];  // Remplacez les dimensions selon votre grille
         Set<ElementDeGrille> elementAutorise = new HashSet<>();  // Ajoutez les éléments autorisés nécessaires
-        grilleTest = new GrilleImpl(grille, elementAutorise);
+        grilleTest = new GrilleImpl(9);
     }
 
 
