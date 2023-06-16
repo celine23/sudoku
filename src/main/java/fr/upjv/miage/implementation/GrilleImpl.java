@@ -37,6 +37,10 @@ public class GrilleImpl implements Grille {
         this.elementAutorise = getExpectedElement();
     }
 
+    public GrilleImpl(int dimension, ElementDeGrille[][] grille, Set<ElementDeGrille> elementAutorise) {
+        this.casesGrille = grille;
+        this.elementAutorise = elementAutorise;
+    }
     /**
      * Retourne un ensemble contenant tous
      * les elements autorises dans la grille.

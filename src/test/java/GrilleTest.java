@@ -26,11 +26,19 @@ public class GrilleTest {
     @BeforeEach
     public void setUp() {
         // Initialiser la grille avant chaque test
-        ElementDeGrille[][] grille = new ElementDeGrille[9][9];  // Remplacez les dimensions selon votre grille
-        Set<ElementDeGrille> elementAutorise = new HashSet<>();  // Ajoutez les éléments autorisés nécessaires
-        grilleTest = new GrilleImpl(9);
+        ElementDeGrille[][] grille = new ElementDeGrille[9][9];
+        Set<ElementDeGrille> elementAutorise = new HashSet<>();
+        elementAutorise.add(new ElementDeGrilleImplAsChar('1'));
+        elementAutorise.add(new ElementDeGrilleImplAsChar('2'));
+        elementAutorise.add(new ElementDeGrilleImplAsChar('3'));
+        elementAutorise.add(new ElementDeGrilleImplAsChar('4'));
+        elementAutorise.add(new ElementDeGrilleImplAsChar('5'));
+        elementAutorise.add(new ElementDeGrilleImplAsChar('6'));
+        elementAutorise.add(new ElementDeGrilleImplAsChar('7'));
+        elementAutorise.add(new ElementDeGrilleImplAsChar('8'));
+        elementAutorise.add(new ElementDeGrilleImplAsChar('9'));
+        grilleTest = new GrilleImpl(9, grille, elementAutorise);
     }
-
 
 
     @Test
@@ -116,6 +124,6 @@ public class GrilleTest {
 
         grilleTest.setValue(x, y, value);
 
-        assertTrue(grilleTest.isValeurInitiale(x, y));
+        assertFalse(grilleTest.isValeurInitiale(x, y));
     }
 }
