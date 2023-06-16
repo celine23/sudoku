@@ -170,29 +170,26 @@ public class GrilleImpl implements Grille {
      * {@inheritDoc}
      */
     @Override
-    public final void setValue(final int x, final int y,
-                               final ElementDeGrille value)
+    public final void setValue(final int x, final int y, final ElementDeGrille value)
             throws HorsBornesException, ValeurImpossibleException,
             ElementInterditException, ValeurInitialeModificationException {
 
-        if (x < 0 || x >= casesGrille.length
-                || y < 0 || y >= casesGrille[x].length) {
-            throw new HorsBornesException(
-                    "valeur hors borne");
+        if (x < 0 || x >= casesGrille.length || y < 0 || y >= casesGrille[x].length) {
+            throw new HorsBornesException("valeur hors borne");
         }
-        if (this.isValeurInitiale(x, y)) {
-            throw new ValeurInitialeModificationException(
-                    "impossible de modifier une valeur initiale");
+        if (isValeurInitiale(x, y)) {
+            throw new ValeurInitialeModificationException("impossible de modifier une valeur initiale");
         }
 
         if (!isPossible(x, y, value)) {
-            throw new ValeurImpossibleException(
-                    "valeur impossible a placer");
-        } else {
-            casesGrille[x][y] = value;
+            throw new ValeurImpossibleException("valeur impossible a placer");
         }
 
+        casesGrille[x][y] = value;
     }
+
+
+
 
     /**
      * Vérifie si une valeur donnée peut être placée à une position donnée de la
@@ -209,57 +206,34 @@ public class GrilleImpl implements Grille {
      * @throws ElementInterditException si la valeur à placer n'est
      *                                  pas autorisée
      */
-    @Override
-    public final boolean isPossible(
-            final int x, final int y, final ElementDeGrille value)
-            throws HorsBornesException, ElementInterditException {
-
-        if (!elementAutorise.contains(value) && value != null) {
-            throw new ElementInterditException(
-                    "characere interdit");
-        }
-
-        if (x < 0 || x >= casesGrille.length
-                || y < 0 || y >= casesGrille[x].length) {
-            throw new HorsBornesException(
-                    "valeur hors borne");
-        }
-
-        if (isValeurInitiale(x, y)) {
-            return false;
-        }
-
-        if (value == null) {
-            return true;
-        }
-
-        for (int i = 0; i < getDimension(); i++) {
-            if (value.equals(casesGrille[x][i])) {
-                return false;
+    public boolean isPossible(int x, int y, ElementDeGrille value) {
+        // Vérifier si la valeur existe déjà dans la même ligne ou colonne
+        for (int i = 0; i < dimension; i++) {
+            if (grille[x][i] != null && grille[x][i].equals(value)) {
+                return false; // La valeur existe déjà dans la même ligne
+            }
+            if (grille[i][y] != null && grille[i][y].equals(value)) {
+                return false; // La valeur existe déjà dans la même colonne
             }
         }
 
-        for (int j = 0; j < getDimension(); j++) {
-            if (value.equals(casesGrille[j][y])) {
-                return false;
-            }
-        }
+        // Vérifier si la valeur existe déjà dans le même bloc
+        int blocX = x / 3; // Calculer le numéro du bloc en fonction des coordonnées
+        int blocY = y / 3;
+        int startX = blocX * 3; // Calculer les coordonnées de départ du bloc
+        int startY = blocY * 3;
 
-        double tailleSousGrille = Math.sqrt(getDimension());
-        int tailleSousGrillereel = (int) Math.floor(tailleSousGrille);
-        int debutX = (x / tailleSousGrillereel) * tailleSousGrillereel;
-        int debutY = (y / tailleSousGrillereel) * tailleSousGrillereel;
-        for (int i = debutX; i < debutX + tailleSousGrillereel; i++) {
-            for (int j = debutY; j < debutY + tailleSousGrillereel; j++) {
-                if (value.equals(casesGrille[i][j])) {
-                    return false;
+        for (int i = startX; i < startX + 3; i++) {
+            for (int j = startY; j < startY + 3; j++) {
+                if (grille[i][j] != null && grille[i][j].equals(value)) {
+                    return false; // La valeur existe déjà dans le même bloc
                 }
             }
         }
 
-        return true;
-
+        return true; // La valeur peut être placée à cet endroit
     }
+
 
     /**
      *
