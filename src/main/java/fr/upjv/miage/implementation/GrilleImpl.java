@@ -65,7 +65,6 @@ public class GrilleImpl implements Grille {
      * Constructeur pour créer une nouvelle
      * instance de GrilleImpl avec une grille
      * et une liste d'éléments autorisés.
-     *
      * @param grille               une grille
      * @param paramElementAutorise une liste d'éléments autorisés
      */
