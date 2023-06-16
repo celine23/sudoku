@@ -8,7 +8,6 @@ import fr.upjv.miage.exception.ElementInterditException;
 import fr.upjv.miage.exception.HorsBornesException;
 import fr.upjv.miage.exception.ValeurImpossibleException;
 import fr.upjv.miage.exception.ValeurInitialeModificationException;
-//import fr.upjv.miage.implementation.ElementDeGrilleImplAsChar;
 import fr.upjv.miage.sudoku.ElementDeGrille;
 import fr.upjv.miage.sudoku.Grille;
 
@@ -24,90 +23,36 @@ public class GrilleImpl implements Grille {
      * Ensemble des elements autorises dans la grille.
      */
     private final Set<ElementDeGrille> elementAutorise;
-    /**
-     * Element possible de la grille : le chiffre 1.
-     */
-    private ElementDeGrille element1V = new ElementDeGrilleImplAsChar('1');
-    /**
-     * Element possible de la grille : le chiffre 2.
-     */
-    private ElementDeGrille element2V = new ElementDeGrilleImplAsChar('2');
-    /**
-     * Element possible de la grille : le chiffre 3.
-     */
-    private ElementDeGrille element3V = new ElementDeGrilleImplAsChar('3');
-    /**
-     * Element possible de la grille : le chiffre 4.
-     */
-    private ElementDeGrille element4V = new ElementDeGrilleImplAsChar('4');
-    /**
-     * Element possible de la grille : le chiffre 5.
-     */
-    private ElementDeGrille element5V = new ElementDeGrilleImplAsChar('5');
-    /**
-     * Element possible de la grille : le chiffre 6.
-     */
-    private ElementDeGrille element6V = new ElementDeGrilleImplAsChar('6');
-    /**
-     * Element possible de la grille : le chiffre 7.
-     */
-    private ElementDeGrille element7V = new ElementDeGrilleImplAsChar('7');
-    /**
-     * Element possible de la grille : le chiffre 8.
-     */
-    private ElementDeGrille element8V = new ElementDeGrilleImplAsChar('8');
-    /**
-     * Element possible de la grille : le chiffre 9.
-     */
-    private ElementDeGrille element9V = new ElementDeGrilleImplAsChar('9');
-    /**
-     * Element possible de la grille : la lettre a.
-     */
-    private ElementDeGrille elementaV = new ElementDeGrilleImplAsChar('a');
-    /**
-     * Element possible de la grille : la lettre b.
-     */
-    private ElementDeGrille elementbV = new ElementDeGrilleImplAsChar('b');
-    /**
-     * Element possible de la grille : la lettre c.
-     */
-    private ElementDeGrille elementcV = new ElementDeGrilleImplAsChar('c');
-    /**
-     * Element possible de la grille : la lettre d.
-     */
-    private ElementDeGrille elementdV = new ElementDeGrilleImplAsChar('d');
-    /**
-     * Element possible de la grille : la lettre e.
-     */
-    private ElementDeGrille elementeV = new ElementDeGrilleImplAsChar('e');
-    /**
-     * Element possible de la grille : la lettre f.
-     */
-    private ElementDeGrille elementfV = new ElementDeGrilleImplAsChar('f');
 
     /**
-     * Retourne un ensemble contenant tous.
-     * les elements autorises dans la grille
+     * Constructeur pour créer une nouvelle
+     * instance de GrilleImpl avec une grille de
+     * dimension donnée.
      *
-     * @return ensemble contenant les elements autorises.
+     * @param dimension la dimension de la grille
+     */
+    public GrilleImpl(final int dimension) {
+        this.casesGrille = new ElementDeGrille[dimension][dimension];
+        this.elementAutorise = getExpectedElement();
+    }
+
+    /**
+     * Retourne un ensemble contenant tous
+     * les elements autorises dans la grille.
+     *
+     * @return ensemble contenant les elements autorises
      */
     private Set<ElementDeGrille> getExpectedElement() {
         Set<ElementDeGrille> expectedElements = new HashSet<>();
-        expectedElements.add(element1V);
-        expectedElements.add(element2V);
-        expectedElements.add(element3V);
-        expectedElements.add(element4V);
-        expectedElements.add(element5V);
-        expectedElements.add(element6V);
-        expectedElements.add(element7V);
-        expectedElements.add(element8V);
-        expectedElements.add(element9V);
-        expectedElements.add(elementaV);
-        expectedElements.add(elementbV);
-        expectedElements.add(elementcV);
-        expectedElements.add(elementdV);
-        expectedElements.add(elementeV);
-        expectedElements.add(elementfV);
+        expectedElements.add(new ElementDeGrilleImplAsChar('1'));
+        expectedElements.add(new ElementDeGrilleImplAsChar('2'));
+        expectedElements.add(new ElementDeGrilleImplAsChar('3'));
+        expectedElements.add(new ElementDeGrilleImplAsChar('4'));
+        expectedElements.add(new ElementDeGrilleImplAsChar('5'));
+        expectedElements.add(new ElementDeGrilleImplAsChar('6'));
+        expectedElements.add(new ElementDeGrilleImplAsChar('7'));
+        expectedElements.add(new ElementDeGrilleImplAsChar('8'));
+        expectedElements.add(new ElementDeGrilleImplAsChar('9'));
         return expectedElements;
     }
 
