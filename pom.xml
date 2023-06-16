@@ -18,7 +18,14 @@
     </dependencies>
 
     <build>
-        <plugins><!-- lister les plugins et leur version permet d'eviter que maven prenne celui qui trouvera par defaut -->
+      <plugins><!-- lister les plugins et leur version permet d'eviter que maven prenne celui qui trouvera par defaut -->
+	<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
