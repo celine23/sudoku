@@ -3,4 +3,4 @@
  * @author groupe J
  */
 
-package fr.upjv.miage.implementation;
+package fr.upjv.miage.sudoku;

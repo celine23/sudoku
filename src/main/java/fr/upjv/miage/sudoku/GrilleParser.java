@@ -6,7 +6,7 @@ import fr.upjv.miage.exception.ValeurImpossibleException;
 import fr.upjv.miage.exception.ValeurInitialeModificationException;
 import fr.upjv.miage.implementation.ElementDeGrilleImplAsChar;
 import fr.upjv.miage.implementation.GrilleImpl;
-import fr.upjv.miage.sudoku.ElementDeGrille;
+
 
 
 
