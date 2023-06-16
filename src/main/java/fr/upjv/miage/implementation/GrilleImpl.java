@@ -160,7 +160,8 @@ public class GrilleImpl implements Grille {
         boolean vi = false;
         try {
             if (getValue(x, y) != null
-                    && ((ElementDeGrilleImplAsChar) casesGrille[x][y])
+                    //changer ElementDGrilleImplAschar
+                    && ((ElementDeGrilleImplAsChar) casesGrille[x][y]) // manipuler k des elment de grille , créer un tab de bool qui dit si oui ou non c'est une valeur init
                     .getInitialValueValidated()) {
                 vi = true;
             }

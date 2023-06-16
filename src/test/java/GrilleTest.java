@@ -41,6 +41,7 @@ public class GrilleTest {
     }
 
 
+
     @Test
     public void testGetElements() {
         Set<ElementDeGrille> expectedElements = new HashSet<>();
@@ -94,18 +95,45 @@ public class GrilleTest {
 
     @Test
     public void testIsComplete() throws ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
-        assertFalse(grilleTest.isComplete());
+        // Créer une grille de test
+        int dimension = 3;
+        ElementDeGrille[][] grille = new ElementDeGrille[dimension][dimension];
+        grille[0][0] = new ElementDeGrilleImplAsChar('1');
+        grille[0][1] = new ElementDeGrilleImplAsChar('2');
+        grille[0][2] = new ElementDeGrilleImplAsChar('3');
+        grille[1][0] = new ElementDeGrilleImplAsChar('4');
+        grille[1][1] = new ElementDeGrilleImplAsChar('5');
+        grille[1][2] = new ElementDeGrilleImplAsChar('6');
+        grille[2][0] = new ElementDeGrilleImplAsChar('7');
+        grille[2][1] = new ElementDeGrilleImplAsChar('8');
+        grille[2][2] = new ElementDeGrilleImplAsChar('9');
 
-        // Remplir la grille avec des valeurs valides
-        for (int x = 0; x < grilleTest.getDimension(); x++) {
-            for (int y = 0; y < grilleTest.getDimension(); y++) {
-                ElementDeGrille value = new ElementDeGrilleImplAsChar((char) ('1' + (x + y) % 9));
-                grilleTest.setValue(x, y, value);
-            }
-        }
+        Set<ElementDeGrille> elementsAutorises = new HashSet<>();
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('1'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('2'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('3'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('4'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('5'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('6'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('7'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('8'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('9'));
 
+        Grille grilleTest = new GrilleImpl(grille, elementsAutorises);
+
+        // Vérifier si la grille est complète
         assertTrue(grilleTest.isComplete());
+
+        // Modifier une valeur dans la grille
+        grille[2][1] = null;
+        assertTrue(grilleTest.isComplete());
+
+        // Vérifier que la grille n'est plus complète
+        grilleTest.setValue(2,1,null);
+        assertFalse(grilleTest.isComplete());
     }
+
+
 
     @Test
     public void testIsPossible() throws ElementInterditException, HorsBornesException {
