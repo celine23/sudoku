@@ -7,16 +7,16 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
-import contenusudoku.exception.ElementInterditException;
-import contenusudoku.exception.HorsBornesException;
-import contenusudoku.exception.ValeurImpossibleException;
-import contenusudoku.exception.ValeurInitialeModificationException;
-import contenusudoku.implementation.ElementDeGrilleImplAsChar;
-import contenusudoku.implementation.GrilleImpl;
-import contenusudoku.sudoku.ElementDeGrille;
-import contenusudoku.sudoku.Grille;
-import contenusudoku.sudoku.Solveur;
-import contenusudoku.sudoku.SolveurClasse;
+import fr.upjv.miage.exception.ElementInterditException;
+import fr.upjv.miage.exception.HorsBornesException;
+import fr.upjv.miage.exception.ValeurImpossibleException;
+import fr.upjv.miage.exception.ValeurInitialeModificationException;
+import fr.upjv.miage.implementation.ElementDeGrilleImplAsChar;
+import fr.upjv.miage.implementation.GrilleImpl;
+import fr.upjv.miage.sudoku.ElementDeGrille;
+import fr.upjv.miage.sudoku.Grille;
+import fr.upjv.miage.sudoku.Solveur;
+//import fr.upjv.miage.sudoku.SolveurClasse;
 
 /**
  * ElementInterditException.
@@ -48,6 +48,19 @@ public class SolveurTest {
     ElementDeGrille value3 = new ElementDeGrilleImplAsChar('3');
     ElementDeGrille value4 = new ElementDeGrilleImplAsChar('4');
 
+    public SolveurTest() {
+        solver = new Solveur() {
+            /**
+             * @param grille Grille à résoudre
+             * @return
+             */
+            @Override
+            public boolean solve(Grille grille) {
+                return false;
+            }
+        };
+    }
+
     private Set<ElementDeGrille> getExpectedElements() {
         Set<ElementDeGrille> expectedElements = new HashSet<>();
         expectedElements.add(value1);
@@ -62,7 +75,7 @@ public class SolveurTest {
 
     Grille invalidGrid = new GrilleImpl(gridElements2, this.getExpectedElements());
 
-    Solveur solver = new SolveurClasse();
+    Solveur solver;
 
     @Timeout(5)
     @Test
