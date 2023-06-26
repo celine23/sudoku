@@ -59,7 +59,7 @@ public class SolveurClasse implements Solveur {
     }
 
     @Override
-    public boolean solver(Grille validGrid) {
+    public boolean solver(int[][] validGrid) {
         return false;
     }
 }
