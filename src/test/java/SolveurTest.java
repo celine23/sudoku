@@ -49,9 +49,40 @@ public class SolveurTest {
         solver = new Solveur() {
             @Override
             public boolean solve(Grille grille) {
-                return false;
+                return solveSudoku(grille);
             }
         };
+    }
+
+    private boolean solveSudoku(Grille grille) {
+        // Trouver une cellule vide (null) dans la grille
+        for (int row = 0; row < grille.getNbLignes(); row++) {
+            for (int col = 0; col < grille.getNbColonnes(); col++) {
+                if (grille.getElement(row, col) == null) {
+                    // Essayer tous les chiffres possibles de 1 à 4
+                    for (ElementDeGrille element : grille.getElementsPossibles()) {
+                        try {
+                            // Essayer d'assigner le chiffre à la cellule
+                            grille.setElement(row, col, element);
+
+                            // Résoudre récursivement le Sudoku à partir de la cellule suivante
+                            if (solveSudoku(grille)) {
+                                return true;  // La grille a été résolue
+                            }
+
+                            // Si la résolution échoue, revenir en arrière et effacer la valeur
+                            grille.setElement(row, col, null);
+                        } catch (ValeurImpossibleException | ValeurInitialeModificationException e) {
+                            // Ignorer les exceptions de valeur impossible ou de modification de valeur initiale
+                        }
+                    }
+
+                    return false;  // Aucune valeur possible n'a fonctionné, revenir en arrière
+                }
+            }
+        }
+
+        return true;  // Toutes les cellules ont été remplies, la grille est résolue
     }
 
     private Set<ElementDeGrille> getExpectedElements() {
@@ -78,14 +109,9 @@ public class SolveurTest {
 
         System.out.println("Solved grid:");
         System.out.println(validGrid);
+        assertTrue(result);
+        assertTrue(validGrid.isComplete());
 
-        if (validGrid.isComplete()) {
-            System.out.println("La grille a été résolue avec succès.");
-            assertTrue(result);
-        } else {
-            System.out.println("La grille n'a pas pu être résolue.");
-            assertFalse(result);
-        }
     }
 
     @Timeout(5)
@@ -99,14 +125,14 @@ public class SolveurTest {
 
         System.out.println("Solved grid:");
         System.out.println(invalidGrid);
-
-        if (invalidGrid.isComplete()) {
+        assertFalse(result);
+        /*if (invalidGrid.isComplete()) {
             System.out.println("La grille a été résolue avec succès.");
             assertTrue(result);
         } else {
             System.out.println("La grille n'a pas pu être résolue.");
-            assertFalse(result);
-        }
+
+        }*/
     }
 }
 
