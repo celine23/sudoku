@@ -53,9 +53,7 @@ public class Prof {
                  | ValeurInitialeModificationException e) {
             e.printStackTrace();
         }
-
         System.out.println("grille resolue : ");
         System.out.println(grille);
-
     }
 }
