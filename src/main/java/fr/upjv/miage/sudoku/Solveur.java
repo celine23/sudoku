@@ -28,5 +28,5 @@ public interface Solveur {
 
 
    boolean solver(Grille validGrid);
-   
+
 }
