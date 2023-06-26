@@ -63,6 +63,7 @@ public class SolveurTest {
 
     Solveur solver = new SolveurClasse();
 
+
     @Timeout(5)
     @Test
     public void testValidSolving() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
@@ -79,6 +80,7 @@ public class SolveurTest {
 
     }
 
+    @Timeout(5)
     @Test
     public void testInvalidSolving() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
             ValeurInitialeModificationException {

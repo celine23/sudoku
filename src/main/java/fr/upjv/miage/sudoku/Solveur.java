@@ -1,25 +1,37 @@
 package fr.upjv.miage.sudoku;
+
 import fr.upjv.miage.exception.ElementInterditException;
 import fr.upjv.miage.exception.HorsBornesException;
 import fr.upjv.miage.exception.ValeurImpossibleException;
 import fr.upjv.miage.exception.ValeurInitialeModificationException;
 
-
 /**
- * Interface de résolveur de Grille
+ * Interface de résolveur de Grille.
  *
  * @author Groupe J
  */
 public interface Solveur {
     /**
-     * Résoudre une Grille
+     * Résout une Grille.
      *
+     * @param grille la grille à résoudre
      * @return true si la grille a été résolue
+     * @throws HorsBornesException  si une position est hors des bornes de la grille
+     * @throws ElementInterditException si un élément est interdit dans la grille
+     * @throws ValeurImpossibleException si une valeur est impossible à placer dans la grille
+     * @throws ValeurInitialeModificationException si une valeur initiale est modifiée dans la grille
+     *
      */
+    public boolean solve(Grille grille)
+            throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
+            ValeurInitialeModificationException;
+    /**
+     * ClasseSolveur.
+     */
+    public class VotreClasseSolveur implements Solveur {
 
-   /* public class VotreClasseSolveur implements Solveur {
-
-        public boolean solve(Grille grille) throws HorsBornesException,
+        @Override
+        public boolean solve(final Grille grille) throws HorsBornesException,
                 ElementInterditException, ValeurImpossibleException,
                 ValeurInitialeModificationException {
             // Vérifier si la grille est complète, c'est-à-dire si toutes les cases sont remplies
@@ -54,14 +66,7 @@ public interface Solveur {
                     }
                 }
             }
-
             return false; // La grille est impossible à résoudre
         }
-
-    }*/
-
-
-    boolean solve(Grille grille) throws HorsBornesException,
-            ElementInterditException, ValeurImpossibleException,
-            ValeurInitialeModificationException;;
+    }
 }

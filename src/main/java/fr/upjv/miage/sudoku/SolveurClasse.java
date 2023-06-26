@@ -8,7 +8,7 @@ import fr.upjv.miage.exception.ValeurImpossibleException;
 import fr.upjv.miage.exception.ValeurInitialeModificationException;
 
 /**
- *
+ * GROUPE J
  */
 public class SolveurClasse implements Solveur {
 
@@ -33,16 +33,13 @@ public class SolveurClasse implements Solveur {
     public final boolean solve(final Grille grille)
             throws HorsBornesException, ElementInterditException,
             ValeurImpossibleException, ValeurInitialeModificationException {
-
         System.out.println(grille);
         boolean possible = false;
-
         Set<ElementDeGrille> elementvalide = grille.getElements();
 
         if (grille.isComplete()) {
             return true;
         }
-
         int nbLignes = grille.getDimension();
         int nbColonnes = nbLignes;
         for (int i = 0; i < nbLignes; i++) {
@@ -64,7 +61,5 @@ public class SolveurClasse implements Solveur {
             }
         }
         return false;
-
     }
-
 }
