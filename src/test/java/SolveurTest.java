@@ -16,6 +16,7 @@ import fr.upjv.miage.implementation.GrilleImpl;
 import fr.upjv.miage.sudoku.ElementDeGrille;
 import fr.upjv.miage.sudoku.Grille;
 import fr.upjv.miage.sudoku.Solveur;
+import fr.upjv.miage.sudoku.SolveurClasse;
 
 public class SolveurTest {
 
