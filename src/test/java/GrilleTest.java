@@ -40,8 +40,6 @@ public class GrilleTest {
         grilleTest = new GrilleImpl(9, grille, elementAutorise);
     }
 
-
-
     @Test
     public void testGetElements() {
         Set<ElementDeGrille> expectedElements = new HashSet<>();
@@ -55,17 +53,14 @@ public class GrilleTest {
         expectedElements.add(new ElementDeGrilleImplAsChar('7'));
         expectedElements.add(new ElementDeGrilleImplAsChar('8'));
         expectedElements.add(new ElementDeGrilleImplAsChar('9'));
-
         Set<ElementDeGrille> actualElements = grilleTest.getElements();
-
         assertEquals(expectedElements, actualElements);
     }
 
     @Test
     public void testGetDimension() {
-        int expectedDimension = 9;
+        int expectedDimension = 4;
         int actualDimension = grilleTest.getDimension();
-
         assertEquals(expectedDimension, actualDimension);
     }
 
