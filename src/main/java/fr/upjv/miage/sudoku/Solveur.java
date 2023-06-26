@@ -25,6 +25,9 @@ public interface Solveur {
     public boolean solve(Grille grille)
             throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
             ValeurInitialeModificationException;
+
+    boolean solver(Grille validGrid);
+
     /**
      * ClasseSolveur.
      */
