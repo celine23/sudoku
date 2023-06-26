@@ -20,7 +20,7 @@ import fr.upjv.miage.sudoku.SolveurClasse;
 /**
  *  * doc .
  *
- * @author moi
+ * @author GROUPE J
  *          
  */
 public class SolveurTest {
@@ -68,7 +68,7 @@ public class SolveurTest {
 
     @Timeout(5)
     @Test
-    public void tetsgetSolveurValide() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
+    public void testgetSolveurValide() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
             ValeurInitialeModificationException {
         System.out.println(grilleTest);
 
@@ -84,7 +84,7 @@ public class SolveurTest {
 
     @Timeout(5)
     @Test
-    public void tetsSolveurInvalide() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
+    public void testSolveurInvalide() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
             ValeurInitialeModificationException {
 
         System.out.println(grilleTestImpossible);
