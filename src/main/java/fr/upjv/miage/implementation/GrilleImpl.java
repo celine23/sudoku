@@ -285,3 +285,4 @@ public class GrilleImpl implements Grille {
         return chaine.toString();
     }
 }
+        
