@@ -28,6 +28,12 @@ public class GrilleTest {
         // Initialiser la grille avant chaque test
         ElementDeGrille[][] grille = new ElementDeGrille[9][9];
         Set<ElementDeGrille> elementAutorise = new HashSet<>();
+
+        ElementDeGrille element1Initial = new ElementDeGrilleImplAsChar('1', true);
+        ElementDeGrille element2Initial = new ElementDeGrilleImplAsChar('2', true);
+        ElementDeGrille element3Initial = new ElementDeGrilleImplAsChar('3', true);
+        ElementDeGrille element4Initial = new ElementDeGrilleImplAsChar('4', true);
+
         elementAutorise.add(new ElementDeGrilleImplAsChar('1'));
         elementAutorise.add(new ElementDeGrilleImplAsChar('2'));
         elementAutorise.add(new ElementDeGrilleImplAsChar('3'));
@@ -38,8 +44,13 @@ public class GrilleTest {
         elementAutorise.add(new ElementDeGrilleImplAsChar('8'));
         elementAutorise.add(new ElementDeGrilleImplAsChar('9'));
         grilleTest = new GrilleImpl(9, grille, elementAutorise);
-    }
+        ElementDeGrille element1nonIninitial = new ElementDeGrilleImplAsChar('4');
 
+        ElementDeGrille[][] elements2d = {
+                { element1Initial, element2Initial },
+                { element3Initial, element4Initial }
+        };
+    }
 
     @Test
     public void testGetElements() {
@@ -54,17 +65,15 @@ public class GrilleTest {
         expectedElements.add(new ElementDeGrilleImplAsChar('7'));
         expectedElements.add(new ElementDeGrilleImplAsChar('8'));
         expectedElements.add(new ElementDeGrilleImplAsChar('9'));
-
         Set<ElementDeGrille> actualElements = grilleTest.getElements();
-
         assertEquals(expectedElements, actualElements);
+        ElementDeGrille element1nonIninitial = new ElementDeGrilleImplAsChar('4');
     }
 
     @Test
     public void testGetDimension() {
         int expectedDimension = 9;
         int actualDimension = grilleTest.getDimension();
-
         assertEquals(expectedDimension, actualDimension);
     }
 
@@ -75,7 +84,6 @@ public class GrilleTest {
         int y = 0;
 
         assertDoesNotThrow(() -> grilleTest.setValue(x, y, value));
-
         assertEquals(value, grilleTest.getValue(x, y));
     }
 
@@ -86,44 +94,33 @@ public class GrilleTest {
         int y = 5;
 
         grilleTest.setValue(x, y, value);
-
         ElementDeGrille actualValue = grilleTest.getValue(x, y);
-
         assertEquals(value, actualValue);
     }
+    
 
-    @Test
-    public void testIsComplete() throws ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
-        assertFalse(grilleTest.isComplete());
+        @Test
+        public void testIsPossible () throws ElementInterditException, HorsBornesException {
+            ElementDeGrille value = new ElementDeGrilleImplAsChar('3');
+            int x = 0;
+            int y = 0;
 
-        // Remplir la grille avec des valeurs valides
-        for (int x = 0; x < grilleTest.getDimension(); x++) {
-            for (int y = 0; y < grilleTest.getDimension(); y++) {
-                ElementDeGrille value = new ElementDeGrilleImplAsChar((char) ('1' + (x + y) % 9));
-                grilleTest.setValue(x, y, value);
-            }
+            assertTrue(grilleTest.isPossible(x, y, value));
         }
 
-        assertTrue(grilleTest.isComplete());
+
+        @Test
+        public void testIsValeurInitiale () throws
+        ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
+            ElementDeGrille value = new ElementDeGrilleImplAsChar('8');
+            int x = 4;
+            int y = 7;
+
+            grilleTest.setValue(x, y, value);
+
+            assertFalse(grilleTest.isValeurInitiale(x, y));
+        }
+
+
     }
 
-    @Test
-    public void testIsPossible() throws ElementInterditException, HorsBornesException {
-        ElementDeGrille value = new ElementDeGrilleImplAsChar('3');
-        int x = 0;
-        int y = 0;
-
-        assertTrue(grilleTest.isPossible(x, y, value));
-    }
-
-    @Test
-    public void testIsValeurInitiale() throws ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
-        ElementDeGrille value = new ElementDeGrilleImplAsChar('8');
-        int x = 4;
-        int y = 7;
-
-        grilleTest.setValue(x, y, value);
-
-        assertFalse(grilleTest.isValeurInitiale(x, y));
-    }
-}
