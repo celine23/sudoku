@@ -47,10 +47,11 @@ public class GrilleTest {
         ElementDeGrille element1nonIninitial = new ElementDeGrilleImplAsChar('4');
 
         ElementDeGrille[][] elements2d = {
-                { element1Initial, element2Initial },
-                { element3Initial, element4Initial }
+                {element1Initial, element2Initial},
+                {element3Initial, element4Initial}
         };
     }
+
 
     @Test
     public void testGetElements() {
@@ -97,16 +98,17 @@ public class GrilleTest {
         ElementDeGrille actualValue = grilleTest.getValue(x, y);
         assertEquals(value, actualValue);
     }
-    
 
-        @Test
-        public void testIsPossible () throws ElementInterditException, HorsBornesException {
-            ElementDeGrille value = new ElementDeGrilleImplAsChar('3');
-            int x = 0;
-            int y = 0;
 
-            assertTrue(grilleTest.isPossible(x, y, value));
-        }
+    @Test
+    public void testIsPossible() throws ElementInterditException, HorsBornesException {
+        ElementDeGrille value = new ElementDeGrilleImplAsChar('3');
+        int x = 0;
+        int y = 0;
+
+        assertTrue(grilleTest.isPossible(x, y, value));
+    }
+
 
 
         @Test
@@ -123,4 +125,68 @@ public class GrilleTest {
 
 
     }
+
+
+    @Test
+    public void testIsComplete() throws ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
+        // Créer une grille de test
+        int dimension = 3;
+        ElementDeGrille[][] grille = new ElementDeGrille[dimension][dimension];
+        grille[0][0] = new ElementDeGrilleImplAsChar('1');
+        grille[0][1] = new ElementDeGrilleImplAsChar('2');
+        grille[0][2] = new ElementDeGrilleImplAsChar('3');
+        grille[1][0] = new ElementDeGrilleImplAsChar('4');
+        grille[1][1] = new ElementDeGrilleImplAsChar('5');
+        grille[1][2] = new ElementDeGrilleImplAsChar('6');
+        grille[2][0] = new ElementDeGrilleImplAsChar('7');
+        grille[2][1] = new ElementDeGrilleImplAsChar('8');
+        grille[2][2] = new ElementDeGrilleImplAsChar('9');
+
+        Set<ElementDeGrille> elementsAutorises = new HashSet<>();
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('1'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('2'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('3'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('4'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('5'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('6'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('7'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('8'));
+        elementsAutorises.add(new ElementDeGrilleImplAsChar('9'));
+
+        Grille grilleTest = new GrilleImpl(grille, elementsAutorises);
+
+        // Vérifier si la grille est complète
+        assertTrue(grilleTest.isComplete());
+
+        // Modifier une valeur dans la grille
+        grille[2][1] = null;
+        assertTrue(grilleTest.isComplete());
+
+        // Vérifier que la grille n'est plus complète
+        grilleTest.setValue(2,1,null);
+        assertFalse(grilleTest.isComplete());
+    }
+
+
+
+    @Test
+    public void testIsPossible() throws ElementInterditException, HorsBornesException {
+        ElementDeGrille value = new ElementDeGrilleImplAsChar('3');
+        int x = 0;
+        int y = 0;
+
+        assertTrue(grilleTest.isPossible(x, y, value));
+    }
+
+    @Test
+    public void testIsValeurInitiale() throws ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
+        ElementDeGrille value = new ElementDeGrilleImplAsChar('8');
+        int x = 4;
+        int y = 7;
+
+        grilleTest.setValue(x, y, value);
+
+        assertFalse(grilleTest.isValeurInitiale(x, y));
+    }
+}
 

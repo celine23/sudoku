@@ -160,11 +160,20 @@
         public final boolean isValeurInitiale(final int x, final int y) {
         boolean vi = false;
         try {
+
         if (getValue(x, y) != null
         && ((ElementDeGrilleImplAsChar) casesGrille[x][y])
         .getInitialValueValidated()) {
         vi = true;
         }
+
+            if (getValue(x, y) != null
+                    //changer ElementDGrilleImplAschar
+                    && ((ElementDeGrilleImplAsChar) casesGrille[x][y]) // manipuler k des elment de grille , créer un tab de bool qui dit si oui ou non c'est une valeur init
+                    .getInitialValueValidated()) {
+                vi = true;
+            }
+
         } catch (HorsBornesException e) {
         vi = false;
         }
@@ -195,6 +204,7 @@
         "valeur impossible a placer");
         } else {
         casesGrille[x][y] = value;
+
         }
 
         }
@@ -223,6 +233,79 @@
         throw new ElementInterditException(
         "characere interdit");
         }
+
+    }
+
+
+
+
+    /**
+     * Vérifie si une valeur donnée peut être placée à une position donnée de la
+     * grille.
+     *
+     * @param x     l'indice de ligne de la position à vérifier
+     * @param y     l'indice de colonne de la position à vérifier
+     * @param value la valeur à placer dans la grille
+     * @return true si la valeur peut être placée
+     *         à la position donnée, false sinon
+     * @throws HorsBornesException      si la position (x, y) est
+     *                                  hors des bornes de
+     *                                  la grille
+     * @throws ElementInterditException si la valeur à placer n'est
+     *                                  pas autorisée
+     */
+    @Override
+    public final boolean isPossible(
+            final int x, final int y, final ElementDeGrille value)
+            throws HorsBornesException, ElementInterditException {
+
+        if (!elementAutorise.contains(value) && value != null) {
+            throw new ElementInterditException(
+                    "characere interdit");
+        }
+
+        if (x < 0 || x >= casesGrille.length
+                || y < 0 || y >= casesGrille[x].length) {
+            throw new HorsBornesException(
+                    "valeur hors borne");
+        }
+
+        if (isValeurInitiale(x, y)) {
+            return false;
+        }
+
+        if (value == null) {
+            return true;
+        }
+
+        for (int i = 0; i < getDimension(); i++) {
+            if (value.equals(casesGrille[x][i])) {
+                return false;
+            }
+        }
+
+        for (int j = 0; j < getDimension(); j++) {
+            if (value.equals(casesGrille[j][y])) {
+                return false;
+            }
+        }
+
+        double tailleSousGrille = Math.sqrt(getDimension());
+        int tailleSousGrillereel = (int) Math.floor(tailleSousGrille);
+        int debutX = (x / tailleSousGrillereel) * tailleSousGrillereel;
+        int debutY = (y / tailleSousGrillereel) * tailleSousGrillereel;
+        for (int i = debutX; i < debutX + tailleSousGrillereel; i++) {
+            for (int j = debutY; j < debutY + tailleSousGrillereel; j++) {
+                if (value.equals(casesGrille[i][j])) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+
+    }
+
 
         if (x < 0 || x >= casesGrille.length
         || y < 0 || y >= casesGrille[x].length) {

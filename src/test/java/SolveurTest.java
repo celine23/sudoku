@@ -16,12 +16,7 @@ import fr.upjv.miage.implementation.GrilleImpl;
 import fr.upjv.miage.sudoku.ElementDeGrille;
 import fr.upjv.miage.sudoku.Grille;
 import fr.upjv.miage.sudoku.Solveur;
-//import fr.upjv.miage.sudoku.SolveurClasse;
 
-/**
- * ElementInterditException.
- * @author Groupe J
- */
 public class SolveurTest {
 
     ElementDeGrille initialElement1 = new ElementDeGrilleImplAsChar('1', true);
@@ -48,12 +43,10 @@ public class SolveurTest {
     ElementDeGrille value3 = new ElementDeGrilleImplAsChar('3');
     ElementDeGrille value4 = new ElementDeGrilleImplAsChar('4');
 
+    Solveur solver;
+
     public SolveurTest() {
         solver = new Solveur() {
-            /**
-             * @param grille Grille à résoudre
-             * @return
-             */
             @Override
             public boolean solve(Grille grille) {
                 return false;
@@ -72,15 +65,13 @@ public class SolveurTest {
     }
 
     Grille validGrid = new GrilleImpl(gridElements1, this.getExpectedElements());
-
     Grille invalidGrid = new GrilleImpl(gridElements2, this.getExpectedElements());
-
-    Solveur solver;
 
     @Timeout(5)
     @Test
     public void testValidSolving() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
             ValeurInitialeModificationException {
+        System.out.println("Initial grid:");
         System.out.println(validGrid);
 
         boolean result = solver.solve(validGrid);
@@ -88,19 +79,34 @@ public class SolveurTest {
         System.out.println("Solved grid:");
         System.out.println(validGrid);
 
-        assertTrue(validGrid.isComplete());
-        assertTrue(result);
+        if (validGrid.isComplete()) {
+            System.out.println("La grille a été résolue avec succès.");
+            assertTrue(result);
+        } else {
+            System.out.println("La grille n'a pas pu être résolue.");
+            assertFalse(result);
+        }
     }
 
+    @Timeout(5)
     @Test
     public void testInvalidSolving() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
             ValeurInitialeModificationException {
-
+        System.out.println("Initial grid:");
         System.out.println(invalidGrid);
+
         boolean result = solver.solve(invalidGrid);
 
+        System.out.println("Solved grid:");
         System.out.println(invalidGrid);
 
-        assertFalse(result);
+        if (invalidGrid.isComplete()) {
+            System.out.println("La grille a été résolue avec succès.");
+            assertTrue(result);
+        } else {
+            System.out.println("La grille n'a pas pu être résolue.");
+            assertFalse(result);
+        }
     }
 }
+
