@@ -1,5 +1,4 @@
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,122 +17,80 @@ import fr.upjv.miage.sudoku.Grille;
 import fr.upjv.miage.sudoku.Solveur;
 import fr.upjv.miage.sudoku.SolveurClasse;
 
+/**
+ *  * doc .
+ *
+ * @author moi
+ *          
+ */
 public class SolveurTest {
 
-    ElementDeGrille initialElement1 = new ElementDeGrilleImplAsChar('1', true);
-    ElementDeGrille initialElement2 = new ElementDeGrilleImplAsChar('2', true);
-    ElementDeGrille initialElement3 = new ElementDeGrilleImplAsChar('3', true);
-    ElementDeGrille initialElement4 = new ElementDeGrilleImplAsChar('4', true);
+    ElementDeGrille element0Initial = new ElementDeGrilleImplAsChar('1', true);
+    ElementDeGrille element1Initial = new ElementDeGrilleImplAsChar('2', true);
+    ElementDeGrille element2Initial = new ElementDeGrilleImplAsChar('3', true);
+    ElementDeGrille element3Initial = new ElementDeGrilleImplAsChar('4', true);
 
-    ElementDeGrille[][] gridElements1 = {
-            { initialElement1, null, initialElement2, null },
+    ElementDeGrille[][] elements2d = {
+            { element1Initial, null, element2Initial, null },
             { null, null, null, null },
             { null, null, null, null },
-            { initialElement2, null, initialElement3, null },
+            { element2Initial, null, element3Initial, null },
     };
 
-    ElementDeGrille[][] gridElements2 = {
-            { initialElement1, null, initialElement2, initialElement3 },
-            { initialElement3, initialElement4, initialElement1, initialElement2 },
-            { initialElement4, initialElement2, initialElement3, initialElement1 },
-            { initialElement2, initialElement1, initialElement4, initialElement4 },
+    ElementDeGrille[][] elements2dImpossible = {
+            { element0Initial, null, element1Initial, element2Initial },
+            { element2Initial, element3Initial, element0Initial, element1Initial },
+            { element3Initial, element1Initial, element2Initial, element0Initial },
+            { element1Initial, element0Initial, element3Initial, element3Initial },
     };
 
-    ElementDeGrille value1 = new ElementDeGrilleImplAsChar('1');
-    ElementDeGrille value2 = new ElementDeGrilleImplAsChar('2');
-    ElementDeGrille value3 = new ElementDeGrilleImplAsChar('3');
-    ElementDeGrille value4 = new ElementDeGrilleImplAsChar('4');
+    ElementDeGrille element1V = new ElementDeGrilleImplAsChar('1');
+    ElementDeGrille element2V = new ElementDeGrilleImplAsChar('2');
+    ElementDeGrille element3V = new ElementDeGrilleImplAsChar('3');
+    ElementDeGrille element4V = new ElementDeGrilleImplAsChar('4');
 
-    Solveur solver;
-
-    public SolveurTest() {
-        solver = new Solveur() {
-            @Override
-            public boolean solve(Grille grille) {
-                return solveSudoku(grille);
-            }
-        };
-    }
-
-    private boolean solveSudoku(Grille grille) {
-        // Trouver une cellule vide (null) dans la grille
-        for (int row = 0; row < grille.getNbLignes(); row++) {
-            for (int col = 0; col < grille.getNbColonnes(); col++) {
-                if (grille.getElement(row, col) == null) {
-                    // Essayer tous les chiffres possibles de 1 à 4
-                    for (ElementDeGrille element : grille.getElementsPossibles()) {
-                        try {
-                            // Essayer d'assigner le chiffre à la cellule
-                            grille.setElement(row, col, element);
-
-                            // Résoudre récursivement le Sudoku à partir de la cellule suivante
-                            if (solveSudoku(grille)) {
-                                return true;  // La grille a été résolue
-                            }
-
-                            // Si la résolution échoue, revenir en arrière et effacer la valeur
-                            grille.setElement(row, col, null);
-                        } catch (ValeurImpossibleException | ValeurInitialeModificationException e) {
-                            // Ignorer les exceptions de valeur impossible ou de modification de valeur initiale
-                        }
-                    }
-
-                    return false;  // Aucune valeur possible n'a fonctionné, revenir en arrière
-                }
-            }
-        }
-
-        return true;  // Toutes les cellules ont été remplies, la grille est résolue
-    }
-
-    private Set<ElementDeGrille> getExpectedElements() {
+    private Set<ElementDeGrille> getExpectedElement() {
         Set<ElementDeGrille> expectedElements = new HashSet<>();
-        expectedElements.add(value1);
-        expectedElements.add(value2);
-        expectedElements.add(value3);
-        expectedElements.add(value4);
+        expectedElements.add(element1V);
+        expectedElements.add(element2V);
+        expectedElements.add(element3V);
+        expectedElements.add(element4V);
 
         return expectedElements;
     }
 
-    Grille validGrid = new GrilleImpl(gridElements1, this.getExpectedElements());
-    Grille invalidGrid = new GrilleImpl(gridElements2, this.getExpectedElements());
+    Grille grilleTest = new GrilleImpl(elements2d, this.getExpectedElement());
+
+    Grille grilleTestImpossible = new GrilleImpl(elements2dImpossible, this.getExpectedElement());
+
+    Solveur solve = new SolveurClasse();
 
     @Timeout(5)
     @Test
-    public void testValidSolving() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
+    public void tetsgetSolveurValide() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
             ValeurInitialeModificationException {
-        System.out.println("Initial grid:");
-        System.out.println(validGrid);
+        System.out.println(grilleTest);
 
-        boolean result = solver.solve(validGrid);
+        boolean resP = solve.solve(grilleTest);
 
-        System.out.println("Solved grid:");
-        System.out.println(validGrid);
-        assertTrue(result);
-        assertTrue(validGrid.isComplete());
+        System.out.println("grille resolue : ");
+        System.out.println(grilleTest);
+
+        assertEquals(true, grilleTest.isComplete());
+        assertEquals(true, resP);
 
     }
 
-    @Timeout(5)
     @Test
-    public void testInvalidSolving() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
+    public void tetsSolveurInvalide() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
             ValeurInitialeModificationException {
-        System.out.println("Initial grid:");
-        System.out.println(invalidGrid);
 
-        boolean result = solver.solve(invalidGrid);
+        System.out.println(grilleTestImpossible);
+        boolean res = solve.solve(grilleTestImpossible);
 
-        System.out.println("Solved grid:");
-        System.out.println(invalidGrid);
-        assertFalse(result);
-        /*if (invalidGrid.isComplete()) {
-            System.out.println("La grille a été résolue avec succès.");
-            assertTrue(result);
-        } else {
-            System.out.println("La grille n'a pas pu être résolue.");
+        System.out.println(grilleTestImpossible);
 
-        }*/
+        assertEquals(false, res);
     }
+
 }
-
