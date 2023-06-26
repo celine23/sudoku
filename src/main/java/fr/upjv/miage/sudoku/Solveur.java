@@ -27,6 +27,6 @@ public interface Solveur {
             ValeurInitialeModificationException;
 
 
-   boolean solver(int[][] validGrid);
+   boolean solver(Grille validGrid);
    
 }
