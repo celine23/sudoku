@@ -26,11 +26,11 @@ public interface Solveur {
             throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
             ValeurInitialeModificationException;
 
-    boolean solver(Grille validGrid);
+   boolean solver(Grille validGrid);
 
     /**
      * ClasseSolveur.
-     */
+
     public class VotreClasseSolveur implements Solveur {
 
         @Override
@@ -71,5 +71,5 @@ public interface Solveur {
             }
             return false; // La grille est impossible à résoudre
         }
-    }
+    }*/
 }
