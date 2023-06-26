@@ -12,13 +12,12 @@ import fr.upjv.miage.exception.ValeurInitialeModificationException;
  */
 public interface Solveur {
     /**
-     * Résoud une Grille
+     * Résoudre une Grille
      *
-     * @param grille à résoudre
      * @return true si la grille a été résolue
      */
 
-    public class VotreClasseSolveur implements Solveur {
+   /* public class VotreClasseSolveur implements Solveur {
 
         public boolean solve(Grille grille) throws HorsBornesException,
                 ElementInterditException, ValeurImpossibleException,
@@ -59,7 +58,7 @@ public interface Solveur {
             return false; // La grille est impossible à résoudre
         }
 
-    }
+    }*/
 
 
     boolean solve(Grille grille) throws HorsBornesException,
