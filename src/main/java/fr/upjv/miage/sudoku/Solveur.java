@@ -4,17 +4,14 @@ import fr.upjv.miage.exception.HorsBornesException;
 import fr.upjv.miage.exception.ValeurImpossibleException;
 import fr.upjv.miage.exception.ValeurInitialeModificationException;
 
-
 /**
- * Interface de résolveur de Grille
+ * Interface de résolveur de Grille.
  *
  * @author Groupe J
  */
 public interface Solveur {
     /**
-     * Résoud une Grille
-     *
-     * @param grille à résoudre
+     * Résoud une Grille.
      * @return true si la grille a été résolue
      */
 

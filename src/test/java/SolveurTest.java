@@ -65,6 +65,7 @@ public class SolveurTest {
 
     Solveur solve = new SolveurClasse();
 
+
     @Timeout(5)
     @Test
     public void tetsgetSolveurValide() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
@@ -81,6 +82,7 @@ public class SolveurTest {
 
     }
 
+    @Timeout(5)
     @Test
     public void tetsSolveurInvalide() throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
             ValeurInitialeModificationException {
