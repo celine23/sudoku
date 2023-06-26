@@ -13,21 +13,16 @@ import fr.upjv.miage.exception.ValeurInitialeModificationException;
 public class SolveurClasse implements Solveur {
 
     /**
-     *
      * @param grille Grille à résoudre
      * @return vrai si resolue
-     * @throws HorsBornesException
-     *                                             si une valeur est hors
+     * @throws HorsBornesException                 si une valeur est hors
      *                                             des bornes valides
-     * @throws ElementInterditException
-     *                                             si une valeur est
+     * @throws ElementInterditException            si une valeur est
      *                                             interdite dans une case
-     * @throws ValeurInitialeModificationException
-     *                                             si une tentative est faite
+     * @throws ValeurInitialeModificationException si une tentative est faite
      *                                             de modifier une valeur
      *                                             initiale
-     * @throws ValeurImpossibleException
-     *                                             si une valeur ne peut pas
+     * @throws ValeurImpossibleException           si une valeur ne peut pas
      *                                             être placée dans une case
      */
     public final boolean solve(final Grille grille)
