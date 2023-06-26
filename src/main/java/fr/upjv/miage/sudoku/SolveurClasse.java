@@ -62,4 +62,9 @@ public class SolveurClasse implements Solveur {
         }
         return false;
     }
+
+    @Override
+    public boolean solver(Grille validGrid) {
+        return false;
+    }
 }
