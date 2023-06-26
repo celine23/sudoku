@@ -1,4 +1,4 @@
-package fr.upjv.miage.sudoku.grilles;
+package fr.upjv.miage.sudoku;
 import java.util.HashSet;
 import java.util.Set;
 
