@@ -25,10 +25,13 @@ import java.util.Set;
 
 public class GrilleTest {
 
+    /**
+     * Cette variable représente la grille.
+     */
     private GrilleImpl grilleTest;
 
     @BeforeEach
-    public void setUp() {
+    public final void setUp() {
         // Initialiser la grille avant chaque test
         ElementDeGrille[][] grille = new ElementDeGrille[9][9];
         Set<ElementDeGrille> elementAutorise = new HashSet<>();
