@@ -59,7 +59,7 @@ public class GrilleTest {
 
     @Test
     public void testGetDimension() {
-        int expectedDimension = 4;
+        int expectedDimension = 9;
         int actualDimension = grilleTest.getDimension();
         assertEquals(expectedDimension, actualDimension);
     }
@@ -150,3 +150,4 @@ public class GrilleTest {
         assertFalse(grilleTest.isValeurInitiale(x, y));
     }
 }
+

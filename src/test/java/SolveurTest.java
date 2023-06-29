@@ -23,11 +23,29 @@ import fr.upjv.miage.sudoku.SolveurClasse;
  */
 public class SolveurTest {
 
+    /**
+     * Cette variable représente l'élément initial 1.
+     */
     ElementDeGrille initialElement1 = new ElementDeGrilleImplAsChar('1', true);
+
+    /**
+     * Cette variable représente l'élément initial 2.
+     */
     ElementDeGrille initialElement2 = new ElementDeGrilleImplAsChar('2', true);
+
+    /**
+     * Cette variable représente l'élément initial 3.
+     */
     ElementDeGrille initialElement3 = new ElementDeGrilleImplAsChar('3', true);
+
+    /**
+     * Cette variable représente l'élément initial 4.
+     */
     ElementDeGrille initialElement4 = new ElementDeGrilleImplAsChar('4', true);
 
+    /**
+     * Cette variable représente la première grille.
+     */
     ElementDeGrille[][] gridElements1 = {
             { initialElement2, null, initialElement3, null },
             { null, null, null, null },
@@ -35,6 +53,9 @@ public class SolveurTest {
             { initialElement3, null, initialElement4, null },
     };
 
+    /**
+     * Cette variable représente la deuxième grille.
+     */
     ElementDeGrille[][] gridElements2= {
             { initialElement1, null, initialElement2, initialElement3 },
             { initialElement3, initialElement4, initialElement1, initialElement2 },
@@ -42,11 +63,30 @@ public class SolveurTest {
             { initialElement2, initialElement1, initialElement4, initialElement4 },
     };
 
+    /**
+     * Cette variable représente la valeur 1 d'une case.
+     */
     ElementDeGrille value1 = new ElementDeGrilleImplAsChar('1');
+    /**
+     * Cette variable représente la valeur 1 d'une case.
+     */
     ElementDeGrille value2 = new ElementDeGrilleImplAsChar('2');
+
+    /**
+     * Cette variable représente la valeur 1 d'une case.
+     */
     ElementDeGrille value3 = new ElementDeGrilleImplAsChar('3');
+
+    /**
+     * Cette variable représente la valeur 1 d'une case.
+     */
     ElementDeGrille value4 = new ElementDeGrilleImplAsChar('4');
 
+
+    /**
+     * Cette méthode calcule la somme des valeurs.
+     * @return L'élement attendu.
+     */
     private Set<ElementDeGrille> getExpectedElement() {
         Set<ElementDeGrille> expectedElements = new HashSet<>();
         expectedElements.add(value1);
