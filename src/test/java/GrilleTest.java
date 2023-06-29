@@ -1,5 +1,6 @@
-import static org.junit.jupiter.api.Assertions.*;
 
+
+import static org.junit.jupiter.api.Assertions.*;
 import fr.upjv.miage.exception.ElementInterditException;
 import fr.upjv.miage.exception.HorsBornesException;
 import fr.upjv.miage.exception.ValeurImpossibleException;

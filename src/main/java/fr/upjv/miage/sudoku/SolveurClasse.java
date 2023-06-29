@@ -1,14 +1,13 @@
 package fr.upjv.miage.sudoku;
 
 import java.util.Set;
-
 import fr.upjv.miage.exception.ElementInterditException;
 import fr.upjv.miage.exception.HorsBornesException;
 import fr.upjv.miage.exception.ValeurImpossibleException;
 import fr.upjv.miage.exception.ValeurInitialeModificationException;
 
 /**
- * GROUPE J
+ * GROUPE J.
  */
 public class SolveurClasse implements Solveur {
 
@@ -59,7 +58,7 @@ public class SolveurClasse implements Solveur {
     }
 
     @Override
-    public boolean solver(Grille validGrid) {
+    public final boolean solver(final Grille validGrid) {
         return false;
     }
 }
