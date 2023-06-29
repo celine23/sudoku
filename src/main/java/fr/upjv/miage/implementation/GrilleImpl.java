@@ -226,11 +226,6 @@ public class GrilleImpl implements Grille {
             final int x, final int y, final ElementDeGrille value)
             throws HorsBornesException, ElementInterditException {
 
-        if (!elementAutorise.contains(value) && value != null) {
-            throw new ElementInterditException(
-                    "characere interdit");
-        }
-
         if (x < 0 || x >= casesGrille.length
                 || y < 0 || y >= casesGrille[x].length) {
             throw new HorsBornesException(

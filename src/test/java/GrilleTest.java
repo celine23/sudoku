@@ -44,6 +44,17 @@ public class GrilleTest {
     private static final int Y = 5;
 
     /**
+     * déclaration d'un element.
+     */
+    private static final int QT = 4;
+
+    /**
+     * déclaration d'un element.
+     */
+    private static final int ST = 7;
+
+
+    /**
      * Initialisation de la grille de jeu avant chaque test.
      * Crée une grille avec les éléments autorisés de 1 à 9.
      */
@@ -137,14 +148,21 @@ public class GrilleTest {
         assertEquals(value, actualValue);
     }
 
+
     /**
-     * Test de la méthode IsComplete.
      * vérif si la grille est complète.
+     *
+     * @throws HorsBornesException Si une valeur est hors des bornes autorisées.
+     * @throws ElementInterditException Si un élément est interdit.
+     * @throws ValeurImpossibleException valeur impossible.
+     * @throws ValeurInitialeModificationException valeur init mod.
      */
     @Test
-    public final void testIsComplete() throws ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
+    public final void testIsComplete() throws ElementInterditException,
+            ValeurInitialeModificationException, HorsBornesException,
+            ValeurImpossibleException {
         // Créer une grille de test
-        int dimension = 3;
+        int dimension = X;
         ElementDeGrille[][] grille = new ElementDeGrille[dimension][dimension];
         grille[0][0] = new ElementDeGrilleImplAsChar('1');
         grille[0][1] = new ElementDeGrilleImplAsChar('2');
@@ -177,14 +195,21 @@ public class GrilleTest {
         assertTrue(grilleTest.isComplete());
 
         // Vérifier que la grille n'est plus complète
-        grilleTest.setValue(2,1,null);
+        grilleTest.setValue(2, 1, null);
         assertFalse(grilleTest.isComplete());
     }
 
 
 
+    /**
+     * Teste si c'est possible.
+     *
+     * @throws HorsBornesException Si une valeur est hors des bornes autorisées.
+     * @throws ElementInterditException Si un élément est interdit.
+     */
     @Test
-    public void testIsPossible() throws ElementInterditException, HorsBornesException {
+    public final void testIsPossible() throws ElementInterditException,
+            HorsBornesException {
         ElementDeGrille value = new ElementDeGrilleImplAsChar('3');
         int x = 0;
         int y = 0;
@@ -192,11 +217,22 @@ public class GrilleTest {
         assertTrue(grilleTest.isPossible(x, y, value));
     }
 
+
+    /**
+     * vérif si c'est la val init.
+     *
+     * @throws HorsBornesException Si une valeur est hors des bornes autorisées.
+     * @throws ElementInterditException Si un élément est interdit.
+     * @throws ValeurImpossibleException valeur impossible.
+     * @throws ValeurInitialeModificationException valeur init mod.
+     */
     @Test
-    public void testIsValeurInitiale() throws ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
+    public final void testIsValeurInitiale() throws ElementInterditException,
+            ValeurInitialeModificationException, HorsBornesException,
+            ValeurImpossibleException {
         ElementDeGrille value = new ElementDeGrilleImplAsChar('8');
-        int x = 4;
-        int y = 7;
+        int x = QT;
+        int y = ST;
 
         grilleTest.setValue(x, y, value);
 
