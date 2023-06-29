@@ -9,7 +9,6 @@ import fr.upjv.miage.exception.ElementInterditException;
 import fr.upjv.miage.exception.HorsBornesException;
 import fr.upjv.miage.exception.ValeurImpossibleException;
 import fr.upjv.miage.exception.ValeurInitialeModificationException;
-import fr.upjv.miage.sudoku.ElementDeGrille;
 import fr.upjv.miage.sudoku.Grille;
 
 /**
@@ -36,8 +35,15 @@ public class GrilleImpl implements Grille {
         this.casesGrille = new ElementDeGrille[dimension][dimension];
         this.elementAutorise = getExpectedElement();
     }
-
-    public GrilleImpl(int dimension, ElementDeGrille[][] grille, Set<ElementDeGrille> elementAutorise) {
+    /**
+     * GrilleImpl.
+     * @param grille grille.
+     * @param dimension dimension.
+     * @param elementAutorise elementAutorise.
+     */
+    public GrilleImpl(final int dimension,
+                      final ElementDeGrille[][] grille,
+                      final Set<ElementDeGrille> elementAutorise) {
         this.casesGrille = grille;
         this.elementAutorise = elementAutorise;
     }
@@ -71,7 +77,8 @@ public class GrilleImpl implements Grille {
     public GrilleImpl(final ElementDeGrille[][] grille,
                       final Set<ElementDeGrille> paramElementAutorise) {
         if (grille == null) {
-            throw new IllegalArgumentException("Le tableau grille ne peut pas être null");
+            throw new
+                    IllegalArgumentException("Grille null impossible");
         }
         this.casesGrille = new ElementDeGrille[grille.length][grille[0].length];
 
@@ -87,10 +94,11 @@ public class GrilleImpl implements Grille {
      * Constructeur pour créer une nouvelle
      * instance de GrilleImpl avec une grille.
      *
-     * @param elementDeGrilleMap
-     * @param grille             une grille
+     * @param elementDeGrilleMap element grille map.
+     * @param grille une grille.
      */
-    public GrilleImpl(Map<Character, ElementDeGrille> elementDeGrilleMap, final ElementDeGrille[][] grille) {
+    public GrilleImpl(final Map<Character, ElementDeGrille> elementDeGrilleMap,
+                      final ElementDeGrille[][] grille) {
 
         this.casesGrille = new ElementDeGrille[grille.length][grille[0].length];
 
@@ -160,8 +168,7 @@ public class GrilleImpl implements Grille {
         boolean vi = false;
         try {
             if (getValue(x, y) != null
-                    //changer ElementDGrilleImplAschar
-                    && ((ElementDeGrilleImplAsChar) casesGrille[x][y]) // manipuler k des elment de grille , créer un tab de bool qui dit si oui ou non c'est une valeur init
+                    && ((ElementDeGrilleImplAsChar) casesGrille[x][y])
                     .getInitialValueValidated()) {
                 vi = true;
             }
@@ -175,15 +182,18 @@ public class GrilleImpl implements Grille {
      * {@inheritDoc}
      */
     @Override
-    public final void setValue(final int x, final int y, final ElementDeGrille value)
+    public final void setValue(final int x,
+                               final int y, final ElementDeGrille value)
             throws HorsBornesException, ValeurImpossibleException,
             ElementInterditException, ValeurInitialeModificationException {
 
-        if (x < 0 || x >= casesGrille.length || y < 0 || y >= casesGrille[x].length) {
+        if (x < 0 || x >= casesGrille.length
+                || y < 0 || y >= casesGrille[x].length) {
             throw new HorsBornesException("valeur hors borne");
         }
         if (isValeurInitiale(x, y)) {
-            throw new ValeurInitialeModificationException("impossible de modifier une valeur initiale");
+            throw new
+                    ValeurInitialeModificationException("impossible");
         }
 
         if (!isPossible(x, y, value)) {
@@ -285,4 +295,3 @@ public class GrilleImpl implements Grille {
         return chaine.toString();
     }
 }
-        
