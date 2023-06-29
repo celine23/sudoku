@@ -12,21 +12,25 @@ import fr.upjv.miage.exception.ValeurInitialeModificationException;
  */
 public interface Solveur {
     /**
-     * Résout une Grille.
+     * Résoud une Grille.
      *
      * @param grille la grille à résoudre
      * @return true si la grille a été résolue
-     * @throws HorsBornesException  si une position est hors des bornes de la grille
-     * @throws ElementInterditException si un élément est interdit dans la grille
-     * @throws ValeurImpossibleException si une valeur est impossible à placer dans la grille
-     * @throws ValeurInitialeModificationException si une valeur initiale est modifiée dans la grille
-     *
+     * @throws HorsBornesException exception.
+     * @throws ElementInterditException exception.
+     * @throws ValeurImpossibleException exception.
+     * @throws ValeurInitialeModificationException exception.
      */
-    public boolean solve(Grille grille)
-            throws HorsBornesException, ElementInterditException, ValeurImpossibleException,
+    boolean solve(Grille grille)
+            throws HorsBornesException, ElementInterditException,
+            ValeurImpossibleException,
             ValeurInitialeModificationException;
 
-
+    /**
+     * boolean solver.
+     * @param validGrid validgrid.
+     * @return boolean.
+     */
    boolean solver(Grille validGrid);
 
 }
