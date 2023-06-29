@@ -1,5 +1,3 @@
-
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,10 +28,29 @@ public class GrilleTest {
      */
     private GrilleImpl grilleTest;
 
+    /**
+     * déclaration de la dimension.
+     */
+    private static final int DIM = 9;
+
+    /**
+     * déclaration d'un element.
+     */
+    private static final int X = 3;
+
+    /**
+     * déclaration d'un element.
+     */
+    private static final int Y = 5;
+
+    /**
+     * Initialisation de la grille de jeu avant chaque test.
+     * Crée une grille avec les éléments autorisés de 1 à 9.
+     */
     @BeforeEach
     public final void setUp() {
         // Initialiser la grille avant chaque test
-        ElementDeGrille[][] grille = new ElementDeGrille[9][9];
+        ElementDeGrille[][] grille = new ElementDeGrille[DIM][DIM];
         Set<ElementDeGrille> elementAutorise = new HashSet<>();
         elementAutorise.add(new ElementDeGrilleImplAsChar('1'));
         elementAutorise.add(new ElementDeGrilleImplAsChar('2'));
@@ -44,11 +61,16 @@ public class GrilleTest {
         elementAutorise.add(new ElementDeGrilleImplAsChar('7'));
         elementAutorise.add(new ElementDeGrilleImplAsChar('8'));
         elementAutorise.add(new ElementDeGrilleImplAsChar('9'));
-        grilleTest = new GrilleImpl(9, grille, elementAutorise);
+        grilleTest = new GrilleImpl(DIM, grille, elementAutorise);
     }
 
+
+    /**
+     * Test de la méthode getElements.
+     * Vérifie que éléments retournés = éléments attendus.
+     */
     @Test
-    public void testGetElements() {
+    public final void testGetElements() {
         Set<ElementDeGrille> expectedElements = new HashSet<>();
         // Ajouter les éléments de grille attendus à expectedElements
         expectedElements.add(new ElementDeGrilleImplAsChar('1'));
@@ -64,15 +86,25 @@ public class GrilleTest {
         assertEquals(expectedElements, actualElements);
     }
 
+    /**
+     * Test de la méthode GetDimension.
+     * récupère la dimension de la grille.
+     */
     @Test
-    public void testGetDimension() {
-        int expectedDimension = 9;
+    public final void testGetDimension() {
+        int expectedDimension = DIM;
         int actualDimension = grilleTest.getDimension();
         assertEquals(expectedDimension, actualDimension);
     }
 
+
+    /**
+     * Teste ajout val.
+     *
+     * @throws HorsBornesException Si une valeur est hors des bornes autorisées.
+     */
     @Test
-    public void testSetValue() throws HorsBornesException {
+    public final void testSetValue() throws HorsBornesException {
         ElementDeGrille value = new ElementDeGrilleImplAsChar('1');
         int x = 0;
         int y = 0;
@@ -82,11 +114,21 @@ public class GrilleTest {
         assertEquals(value, grilleTest.getValue(x, y));
     }
 
+    /**
+     * Teste la récup d'une val.
+     *
+     * @throws HorsBornesException Si une valeur est hors des bornes autorisées.
+     * @throws ElementInterditException Si un élément est interdit.
+     * @throws ValeurImpossibleException valeur impossible.
+     * @throws ValeurInitialeModificationException valeur init mod.
+     */
     @Test
-    public void testGetValue() throws ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
-        ElementDeGrille value = new ElementDeGrilleImplAsChar('5');
-        int x = 3;
-        int y = 5;
+    public final void testGetValue() throws ElementInterditException,
+            ValeurInitialeModificationException, HorsBornesException,
+            ValeurImpossibleException {
+        ElementDeGrille value = new ElementDeGrilleImplAsChar('Y');
+        int x = X;
+        int y = Y;
 
         grilleTest.setValue(x, y, value);
 
@@ -95,8 +137,12 @@ public class GrilleTest {
         assertEquals(value, actualValue);
     }
 
+    /**
+     * Test de la méthode IsComplete.
+     * vérif si la grille est complète.
+     */
     @Test
-    public void testIsComplete() throws ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
+    public final void testIsComplete() throws ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
         // Créer une grille de test
         int dimension = 3;
         ElementDeGrille[][] grille = new ElementDeGrille[dimension][dimension];
