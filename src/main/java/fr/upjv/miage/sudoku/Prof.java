@@ -8,19 +8,25 @@ import fr.upjv.miage.exception.ValeurImpossibleException;
 import fr.upjv.miage.exception.ValeurInitialeModificationException;
 import fr.upjv.miage.implementation.ElementDeGrilleImplAsChar;
 import fr.upjv.miage.implementation.GrilleImpl;
-import fr.upjv.miage.sudoku.ElementDeGrille;
-import fr.upjv.miage.sudoku.Grille;
-import fr.upjv.miage.sudoku.Solveur;
-import fr.upjv.miage.sudoku.SolveurClasse;
 
-public class Prof {
+/**
+ * Classe profiler.
+ */
+public final class Prof {
+    /**
+     * Classe main.
+     * @param args variable.
+     */
+    public static void main(final String[] args) {
 
-    public static void main(String[] args) {
-
-        ElementDeGrille initialElement1 = new ElementDeGrilleImplAsChar('1', true);
-        ElementDeGrille initialElement2 = new ElementDeGrilleImplAsChar('2', true);
-        ElementDeGrille initialElement3 = new ElementDeGrilleImplAsChar('3', true);
-        ElementDeGrille initialElement4 = new ElementDeGrilleImplAsChar('4', true);
+        ElementDeGrille initialElement1 =
+                new ElementDeGrilleImplAsChar('1', true);
+        ElementDeGrille initialElement2 =
+                new ElementDeGrilleImplAsChar('2', true);
+        ElementDeGrille initialElement3 =
+                new ElementDeGrilleImplAsChar('3', true);
+        ElementDeGrille initialElement4 =
+                new ElementDeGrilleImplAsChar('4', true);
 
         ElementDeGrille value1 = new ElementDeGrilleImplAsChar('1');
         ElementDeGrille value2 = new ElementDeGrilleImplAsChar('2');
@@ -35,10 +41,10 @@ public class Prof {
 
 
         ElementDeGrille[][] elements2d = {
-                { initialElement2, null, initialElement3, null },
-                { null, null, null, null },
-                { null, null, null, null },
-                { initialElement3, null, initialElement4, null },
+                {initialElement2, null, initialElement3, null },
+                {null, null, null, null },
+                {null, null, null, null },
+                {initialElement3, null, initialElement4, null },
         };
 
         Grille grille = new GrilleImpl(elements2d, expectedElements);
@@ -49,7 +55,8 @@ public class Prof {
 
         try {
             boolean resP = solve.solve(grille);
-        } catch (HorsBornesException | ElementInterditException | ValeurImpossibleException
+        } catch (HorsBornesException
+                 | ElementInterditException | ValeurImpossibleException
                  | ValeurInitialeModificationException e) {
             e.printStackTrace();
         }
