@@ -21,8 +21,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Méthodes utilitaire permettant de créer une Grille à partir d'un fichier texte.
- * Il est attendu que la première ligne contiennet : le symbole de case vide, suivi des symboles possibles dans la grille (en UTF-8).
+ * Méthodes utilitaire permettant de créer une Grille à partir
+ * d'un fichier texte.
+ * Il est attendu que la première ligne contiennet :
+ * le symbole de case vide, suivi des symboles possibles
+ * dans la grille (en UTF-8).
  * Les autres lignes contiennent le contenu de la grille.
  * <p>
  * Exemple:
@@ -34,7 +37,7 @@ import java.util.Map;
  *
  * @author Sébastien Choplin <sebastien.choplin@u-picardie.fr>
  */
-public class GrilleParser {
+public final class GrilleParser {
 
     /**
      * constructeur.
@@ -45,12 +48,18 @@ public class GrilleParser {
     /**
      * Fonction parse.
      *
-     * @param in recu
-     * @throws IOException               format de grille en caractere incorrect
-     * @throws ValeurImpossibleException si la grille ne respècte pas les règles
+     * @param in recu.
+     * @throws IOException format de grille en caractere incorrect.
+     * @throws HorsBornesException exception.
+     * @throws ElementInterditException exception.
+     * @throws ValeurImpossibleException exception.
+     * @throws ValeurInitialeModificationException exception.
+     * @return grillImpl.
      */
     public static Grille parse(final InputStream in)
-            throws IOException, ElementInterditException, ValeurInitialeModificationException, HorsBornesException, ValeurImpossibleException {
+            throws IOException, ElementInterditException,
+            ValeurInitialeModificationException, HorsBornesException,
+            ValeurImpossibleException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))) {
 
 
