@@ -1,4 +1,5 @@
 package fr.upjv.miage.sudoku;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,8 +20,8 @@ public final class Prof {
      */
     public static void main(final String[] args) {
 
-        ElementDeGrille initialElement1 =
-                new ElementDeGrilleImplAsChar('1', true);
+       // ElementDeGrille initialElement1 =
+               // new ElementDeGrilleImplAsChar('1', true);
         ElementDeGrille initialElement2 =
                 new ElementDeGrilleImplAsChar('2', true);
         ElementDeGrille initialElement3 =
@@ -54,13 +55,13 @@ public final class Prof {
         System.out.println(grille);
 
         try {
-            boolean resP = solve.solve(grille);
+            solve.solve(grille);
         } catch (HorsBornesException
                  | ElementInterditException | ValeurImpossibleException
                  | ValeurInitialeModificationException e) {
             e.printStackTrace();
         }
-        System.out.println("grille resolue : ");
+        System.out.println("grille résolue : ");
         System.out.println(grille);
     }
 }

@@ -41,12 +41,16 @@ public class GrilleImpl implements Grille {
      * @param dimension dimension.
      * @param elementAutorise elementAutorise.
      */
-    public GrilleImpl(final int dimension,
-                      final ElementDeGrille[][] grille,
-                      final Set<ElementDeGrille> elementAutorise) {
-        this.casesGrille = grille;
-        this.elementAutorise = elementAutorise;
+    public GrilleImpl(final int dimension, final ElementDeGrille[][] grille, final Set<ElementDeGrille> elementAutorise) {
+        this.casesGrille = new ElementDeGrille[dimension][dimension];
+        // Effectuer une copie défensive du tableau grille
+        for (int i = 0; i < grille.length; i++) {
+            System.arraycopy(grille[i], 0, this.casesGrille[i], 0, grille[i].length);
+        }
+        // Effectuer une copie défensive de l'ensemble elementAutorise
+        this.elementAutorise = new HashSet<>(elementAutorise);
     }
+
     /**
      * Retourne un ensemble contenant tous
      * les elements autorises dans la grille.
